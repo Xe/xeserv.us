@@ -1,0 +1,11 @@
+= content title
+  title Whoops!
+
+= content main
+  h1 class="center orange-text" There was an error!
+
+  p So sorry! We couldn't get you to {{.Path}} because of the below error:
+
+  pre {{.Reason}}
+
+  p Please contact us if the problem persists.

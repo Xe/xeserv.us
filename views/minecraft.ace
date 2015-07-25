@@ -1,0 +1,40 @@
+= content title
+  title Minecraft - XeServ
+
+= content main
+  h1 class="center orange-text" Minecraft
+
+  .row
+    div class="col s6 m4"
+      div class="card blue-grey darken-1"
+        div class="card-image"
+          img src="/img/servers/minecraft.jpg"
+
+        div class="card-content white-text"
+          span class="card-title" Status
+          p Server IP: fluttershy.yochat.biz
+
+          {{ if .Online }}
+            p class="green-text" Online
+          {{ else }}
+            p class="red-text" Offline
+          {{ end }}
+
+          p Game mode: {{.Mode}}
+
+    div class="col s6 m8"
+      div class="card blue-grey darken-1"
+        div class="card-content white-text"
+          span class="card-title" Online players: {{ len .Players }}
+          .row
+            {{ $len := len .Players }} {{ if gt $len 0 }}
+              {{ range .Players }}
+                div class="col s12 m3"
+                  div class="card blue-grey darken-3"
+                    div class="center card-content white-text"
+                      img src="https://minotar.net/avatar/{{.}}/100"
+                      p {{.}}
+              {{ end }}
+            {{ else }}
+              p class="center" Nobody seems to be online. Why not invite a friend?
+            {{ end }}

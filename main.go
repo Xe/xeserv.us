@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/Xe/middleware"
+	"github.com/Xe/xeserv.us/interop/minecraft"
 	"github.com/codegangsta/negroni"
 	"github.com/drone/routes"
 	"github.com/yosssi/ace"
@@ -20,29 +21,20 @@ func main() {
 	mux := routes.New()
 
 	mux.Get("/", func(rw http.ResponseWriter, r *http.Request) {
-		tpl, err := ace.Load("views/layout", "views/index", nil)
-		if err != nil {
-			http.Error(rw, err.Error(), http.StatusInternalServerError)
-			return
-		}
-
-		if err := tpl.Execute(rw, nil); err != nil {
-			http.Error(rw, err.Error(), http.StatusInternalServerError)
-			return
-		}
+		doTemplate("views/index", rw, r, nil)
 	})
 
 	mux.Get("/rules", func(rw http.ResponseWriter, r *http.Request) {
-		tpl, err := ace.Load("views/layout", "views/rules", nil)
+		doTemplate("views/rules", rw, r, nil)
+	})
+
+	mux.Get("/minecraft", func(rw http.ResponseWriter, r *http.Request) {
+		s, err := minecraft.Query("10.0.0.5", 25575, "swag")
 		if err != nil {
-			http.Error(rw, err.Error(), http.StatusInternalServerError)
-			return
+			handleError(rw, r, err)
 		}
 
-		if err := tpl.Execute(rw, nil); err != nil {
-			http.Error(rw, err.Error(), http.StatusInternalServerError)
-			return
-		}
+		doTemplate("views/minecraft", rw, r, s)
 	})
 
 	mux.Get("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
@@ -56,4 +48,31 @@ func main() {
 	n.UseHandler(mux)
 
 	n.Run(":3000")
+}
+
+func handleError(rw http.ResponseWriter, r *http.Request, err error) {
+	rw.WriteHeader(500)
+
+	data := struct {
+		Path   string
+		Reason string
+	}{
+		Path:   r.URL.String(),
+		Reason: err.Error(),
+	}
+
+	doTemplate("views/error", rw, r, data)
+}
+
+func doTemplate(name string, rw http.ResponseWriter, r *http.Request, data interface{}) {
+	tpl, err := ace.Load("views/layout", name, nil)
+	if err != nil {
+		handleError(rw, r, err)
+		return
+	}
+
+	if err := tpl.Execute(rw, data); err != nil {
+		handleError(rw, r, err)
+		return
+	}
 }
