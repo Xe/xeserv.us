@@ -1,6 +1,44 @@
 = content main
-  h2 Welcome to funland!
+  h1 class="center orange-text" XeServ Game Servers
 
-  p..
-    This is an example of Gurren doing useful crap.
-    If you notice there are line breaks being put in here!
+  p Welcome to the home page for the XeServ network of game servers! We host a variety of games that cater to all kinds of skill levels and both hardcore and casual gamers.
+
+  .row
+    div class="col s6 m4"
+      div class="card blue-grey darken-1"
+        div class="card-image"
+          img src="/img/servers/minecraft.jpg"
+
+        div class="card-content white-text"
+          span class="card-title" Minecraft
+          p A sandbox and block building game made by Mojang. The oldest server in the XeServ rollout. No client side mods are needed to play here.
+
+        div class="card-action"
+          a href="/minecraft" Server Information
+          a href="https://minecraft.net/" Learn More
+
+    div class="col s6 m4"
+      div class="card blue-grey darken-1"
+        div class="card-image"
+          img src="/img/servers/tf2.jpg"
+
+        div class="card-content white-text"
+          span class="card-title" Team Fortress 2
+          p A class-based war-themed hat simulator. Lots of maps, lots of friends, lots of fun! This server has alltalk, grappling hook and other mods.
+
+        div class="card-action"
+          a href="/tf2" Server Information
+          a href="http://www.teamfortress.com/" Learn More
+
+    div class="col s6 m4"
+      div class="card blue-grey darken-1"
+        div class="card-image"
+          img src="/img/servers/xonotic.jpg"
+
+        div class="card-content white-text"
+          span class="card-title" Xonotic
+          p A free (GPL 2) and very fast-paced first person shooter game. The XeServ server is in instagib mode with the grapple hook and jetpack enabled.
+
+        div class="card-action"
+          a href="/xonotic" Server Information
+          a href="http://www.xonotic.org/" Learn More
