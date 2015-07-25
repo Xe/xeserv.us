@@ -32,6 +32,10 @@ func main() {
 		}
 	})
 
+	mux.Get("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
+		http.Redirect(rw, r, "/favicon.png", 301)
+	})
+
 	n := negroni.Classic()
 
 	middleware.Inject(n)
