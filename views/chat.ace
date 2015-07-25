@@ -1,0 +1,9 @@
+= content title
+  title Chat - XeServ
+
+= content main
+  h1 class="center orange-text" Chat
+
+  iframe src="https://kiwiirc.com/client/irc.ponychat.net/?nick=XeServ|?#XeServ" style="border:0; width:100%; height:600px;"
+
+  p Alternatively you can join from any IRC client by connecting to irc.ponychat.net and joining #XeServ.
