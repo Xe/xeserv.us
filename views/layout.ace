@@ -3,9 +3,8 @@ html lang=en
   head
     meta charset=utf-8
     meta name="viewport" content="width=device-width, initial-scale=1.0"
-    title
-      = yield title
-        | XeServ.us
+    = yield title
+      title XeServ
     link rel="stylesheet" href="/materialize/css/materialize.min.css"
     script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"
     script src="/materialize/js/materialize.min.js"
@@ -24,7 +23,7 @@ html lang=en
 
         ul id="nav-mobile" class="side-nav"
           li
-            a href="/minecraft" Minecraft
+            a href="/rules" Rules
           li
             a href="/chat?mobile=1" Chat
 
