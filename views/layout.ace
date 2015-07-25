@@ -11,9 +11,31 @@ html lang=en
     script src="/materialize/js/materialize.min.js"
 
   body
+    nav class="light-blue lighten-1" role="navigation"
+      div class="nav-wrapper container"
+        a id="logo-container" href="/" class="brand-logo" XeServ
+        ul class="right hide-on-med-and-down"
+          li
+            a href="/rules" Rules
+          li
+            a href="/minecraft" Minecraft
+          li
+            a href="/chat" Chat
+
+        ul id="nav-mobile" class="side-nav"
+          li
+            a href="/minecraft" Minecraft
+          li
+            a href="/chat?mobile=1" Chat
+
+        a href="#" data-activates="nav-mobile" class="button-collapse"
+          i class="material-icons" menu
+
     .container
       .section
-        h1 class="center orange-text" This is a base template
-          = yield main
-          = yield footer
-            | Copyright 2015 by awesome people.
+        = yield main
+        = yield footer
+          p class="grey-text center"
+            Copyright 2015 by Christine Dodrill
+          p class="center"
+            a href="https://git.xeserv.us/xena/xeserv.us" Source code
