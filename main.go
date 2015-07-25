@@ -53,8 +53,7 @@ func fetchAndCache(name string, sl *gurren.StatsLog, r *http.Request, doer func(
 }
 
 func main() {
-
-	sl, err := gurren.New([]string{"http://172.17.42.1:9200"}, "test", runtime.NumCPU())
+	sl, err := gurren.New([]string{"http://logging.hyperadmin.yochat.biz:9200"}, "test", runtime.NumCPU())
 	if err != nil {
 		panic(err)
 	}
