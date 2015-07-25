@@ -5,6 +5,7 @@ import (
 
 	"github.com/Xe/middleware"
 	"github.com/Xe/xeserv.us/interop/minecraft"
+	"github.com/Xe/xeserv.us/interop/xonotic"
 	"github.com/codegangsta/negroni"
 	"github.com/drone/routes"
 	"github.com/yosssi/ace"
@@ -35,6 +36,17 @@ func main() {
 		}
 
 		doTemplate("views/minecraft", rw, r, s)
+	})
+
+	mux.Get("/xonotic", func(rw http.ResponseWriter, r *http.Request) {
+		c := xonotic.Dial("10.0.0.18", "26000")
+
+		stats, err := c.Status()
+		if err != nil {
+			handleError(rw, r, err)
+		}
+
+		doTemplate("views/xonotic", rw, r, stats)
 	})
 
 	mux.Get("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
