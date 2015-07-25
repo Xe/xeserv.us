@@ -1,7 +1,7 @@
 = content main
   h1 class="center orange-text" XeServ Game Servers
 
-  p Welcome to the home page for the XeServ network of game servers! We host a variety of games that cater to all kinds of skill levels and both hardcore and casual gamers.
+  p class="center" Welcome to the home page for the XeServ network of game servers! We host a variety of games that cater to all kinds of skill levels and both hardcore and casual gamers.
 
   .row
     div class="col s6 m4"
