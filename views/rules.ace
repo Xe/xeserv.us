@@ -1,0 +1,36 @@
+= content title
+  title Rules - XeServ
+
+= content main
+  h1 class="center orange-text" Rules
+
+  .row
+    div class="col s12 m4"
+      div class="card blue-grey darken-1"
+        div class="card-content white-text"
+          span class="card-title" Don't be an asshole
+          p Sometimes online games can get heated or otherwise cause people to get angry. Don't be an asshole to people to help everyone have fun.
+
+    div class="col s12 m4"
+      div class="card blue-grey darken-1"
+        div class="card-content white-text"
+          span class="card-title" Lose with honor
+          p Every game has a winner and a loser. Sometimes you win and sometimes you lose. Every game can be learned from.
+
+    div class="col s12 m4"
+      div class="card blue-grey darken-1"
+        div class="card-content white-text"
+          span class="card-title" Have fun
+          p No, really. This is a network of game servers. Game usually implies enjoyment, which usually implies having fun.
+
+    div class="col s12 m4"
+      div class="card blue-grey darken-1"
+        div class="card-content white-text"
+          span class="card-title" Mods can ban you
+          p These rules are really simple. But if a mod sees you consistently breaking them, you're probably gonna be banned.
+
+    div class="col s12 m4"
+      div class="card blue-grey darken-1"
+        div class="card-content white-text"
+          span class="card-title" Mods have say
+          p Really, if there's a dispute that a mod breaks up, just go with what the mod says and move on with your life. It's not worth arguing over.

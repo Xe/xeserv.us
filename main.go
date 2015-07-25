@@ -32,6 +32,19 @@ func main() {
 		}
 	})
 
+	mux.Get("/rules", func(rw http.ResponseWriter, r *http.Request) {
+		tpl, err := ace.Load("views/layout", "views/rules", nil)
+		if err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+			return
+		}
+
+		if err := tpl.Execute(rw, nil); err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+			return
+		}
+	})
+
 	mux.Get("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
 		http.Redirect(rw, r, "/favicon.png", 301)
 	})
