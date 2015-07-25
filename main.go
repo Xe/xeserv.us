@@ -126,7 +126,16 @@ func handleError(rw http.ResponseWriter, r *http.Request, err error) {
 		Reason: err.Error(),
 	}
 
-	doTemplate("views/error", rw, r, data)
+	tpl, err := ace.Load("views/layout", "views/error", nil)
+	if err != nil {
+		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	if err := tpl.Execute(rw, data); err != nil {
+		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 func doTemplate(name string, rw http.ResponseWriter, r *http.Request, data interface{}) {
