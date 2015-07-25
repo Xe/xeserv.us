@@ -32,7 +32,7 @@
                 div class="col s12 m3"
                   div class="card blue-grey darken-3"
                     div class="center card-content white-text"
-                      img src="https://minotar.net/avatar/{{.}}/100"
+                      img src="https://minotar.net/helm/{{.}}/100"
                       p {{.}}
               {{ end }}
             {{ else }}
