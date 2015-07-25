@@ -1,7 +1,9 @@
 package main
 
 import (
+	"log"
 	"net/http"
+	"time"
 
 	"github.com/Xe/middleware"
 	"github.com/Xe/xeserv.us/interop/minecraft"
@@ -10,6 +12,44 @@ import (
 	"github.com/drone/routes"
 	"github.com/yosssi/ace"
 )
+
+type cache struct {
+	data interface{}
+	when time.Time
+}
+
+var (
+	caches map[string]*cache
+)
+
+func init() {
+	caches = make(map[string]*cache)
+}
+
+func fetchAndCache(name string, doer func() (interface{}, error)) (interface{}, error) {
+	now := time.Now()
+
+	if c, ok := caches[name]; ok {
+		if now.Before(c.when.Add(time.Second * time.Duration(15))) {
+			return c.data, nil
+		}
+	}
+
+	c := &cache{
+		when: now,
+	}
+
+	log.Printf("Fetching data for %s", name)
+	var err error
+	c.data, err = doer()
+	if err != nil {
+		return nil, err
+	}
+
+	caches[name] = c
+
+	return c.data, nil
+}
 
 func main() {
 	/*
@@ -30,7 +70,9 @@ func main() {
 	})
 
 	mux.Get("/minecraft", func(rw http.ResponseWriter, r *http.Request) {
-		s, err := minecraft.Query("10.0.0.5", 25575, "swag")
+		s, err := fetchAndCache("minecraft", func() (interface{}, error) {
+			return minecraft.Query("10.0.0.5", 25575, "swag")
+		})
 		if err != nil {
 			handleError(rw, r, err)
 		}
@@ -41,7 +83,9 @@ func main() {
 	mux.Get("/xonotic", func(rw http.ResponseWriter, r *http.Request) {
 		c := xonotic.Dial("10.0.0.18", "26000")
 
-		stats, err := c.Status()
+		stats, err := fetchAndCache("xonotic", func() (interface{}, error) {
+			return c.Status()
+		})
 		if err != nil {
 			handleError(rw, r, err)
 		}
