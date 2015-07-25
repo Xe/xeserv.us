@@ -1,0 +1,19 @@
+= doctype html
+html lang=en
+  head
+    meta charset=utf-8
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title
+      = yield title
+        | XeServ.us
+    link rel="stylesheet" href="/materialize/css/materialize.min.css"
+    script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"
+    script src="/materialize/js/materialize.min.js"
+
+  body
+    .container
+      .section
+        h1 class="center orange-text" This is a base template
+          = yield main
+          = yield footer
+            | Copyright 2015 by awesome people.
