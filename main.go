@@ -3,8 +3,10 @@ package main
 import (
 	"log"
 	"net/http"
+	"runtime"
 	"time"
 
+	"github.com/Xe/gurren/middleware/gurren"
 	"github.com/Xe/middleware"
 	"github.com/Xe/xeserv.us/interop/minecraft"
 	"github.com/Xe/xeserv.us/interop/xonotic"
@@ -52,12 +54,11 @@ func fetchAndCache(name string, doer func() (interface{}, error)) (interface{}, 
 }
 
 func main() {
-	/*
-		sl, err := gurren.New([]string{"http://172.17.42.1:9200"}, "test", runtime.NumCPU())
-		if err != nil {
-			panic(err)
-		}
-	*/
+
+	sl, err := gurren.New([]string{"http://172.17.42.1:9200"}, "test", runtime.NumCPU())
+	if err != nil {
+		panic(err)
+	}
 
 	mux := routes.New()
 
@@ -108,7 +109,7 @@ func main() {
 	n := negroni.Classic()
 
 	middleware.Inject(n)
-	//n.Use(sl)
+	n.Use(sl)
 	n.UseHandler(mux)
 
 	n.Run(":3000")
