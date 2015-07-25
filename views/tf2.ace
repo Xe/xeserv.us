@@ -1,0 +1,10 @@
+= content title
+  title TF2 - XeServ
+
+= content main
+  h1 class="center orange-text" TF2
+
+  center
+    img class="center" src="/img/construction.png"
+
+  p This server is still under construction. Please check again in a few days!

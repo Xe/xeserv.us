@@ -69,6 +69,10 @@ func main() {
 		doTemplate("views/rules", rw, r, nil)
 	})
 
+	mux.Get("/tf2", func(rw http.ResponseWriter, r *http.Request) {
+		doTemplate("views/tf2", rw, r, nil)
+	})
+
 	mux.Get("/minecraft", func(rw http.ResponseWriter, r *http.Request) {
 		s, err := fetchAndCache("minecraft", func() (interface{}, error) {
 			return minecraft.Query("10.0.0.5", 25575, "swag")
