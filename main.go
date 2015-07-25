@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"net/http"
 	"runtime"
 	"time"
@@ -28,7 +27,7 @@ func init() {
 	caches = make(map[string]*cache)
 }
 
-func fetchAndCache(name string, doer func() (interface{}, error)) (interface{}, error) {
+func fetchAndCache(name string, sl *gurren.StatsLog, r *http.Request, doer func() (interface{}, error)) (interface{}, error) {
 	now := time.Now()
 
 	if c, ok := caches[name]; ok {
@@ -41,7 +40,7 @@ func fetchAndCache(name string, doer func() (interface{}, error)) (interface{}, 
 		when: now,
 	}
 
-	log.Printf("Fetching data for %s", name)
+	sl.Log(r, "Fetching data for "+name)
 	var err error
 	c.data, err = doer()
 	if err != nil {
@@ -79,7 +78,7 @@ func main() {
 	})
 
 	mux.Get("/minecraft", func(rw http.ResponseWriter, r *http.Request) {
-		s, err := fetchAndCache("minecraft", func() (interface{}, error) {
+		s, err := fetchAndCache("minecraft", sl, r, func() (interface{}, error) {
 			return minecraft.Query("10.0.0.5", 25575, "swag")
 		})
 		if err != nil {
@@ -92,7 +91,7 @@ func main() {
 	mux.Get("/xonotic", func(rw http.ResponseWriter, r *http.Request) {
 		c := xonotic.Dial("10.0.0.18", "26000")
 
-		stats, err := fetchAndCache("xonotic", func() (interface{}, error) {
+		stats, err := fetchAndCache("xonotic", sl, r, func() (interface{}, error) {
 			return c.Status()
 		})
 		if err != nil {
