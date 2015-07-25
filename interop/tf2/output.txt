@@ -1,0 +1,21 @@
+hostname: Team Fortress 2
+version : 2892667/24 2892667 insecure
+udp/ip  : 10.0.0.6:27015
+account : not logged in  (No account specified)
+map     : trade_clocktown_b2a at: -2477 x, 2313 y, -178 z
+edicts  : 918 used of 2048 max
+tags    :
+         Spawns Points Kills Deaths Assists
+players : 1 humans, 0 bots (24 max)
+Scout         0      0     0      0       0
+Medic         0      0     0      0       0
+Sniper        0      0     0      0       0
+Heavy         0      0     0      0       0
+Soldier       0      0     0      0       0
+Pyro          0      0     0      0       0
+Demoman       0      0     0      0       0
+Spy           0      0     0      0       0
+Engineer      0      0     0      0       0
+
+# userid name                uniqueid            connected ping loss state  adr
+#      2 "Within"            STEAM_ID_LAN        03:35       22    0 active loopback
