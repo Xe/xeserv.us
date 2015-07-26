@@ -35,6 +35,4 @@ html lang=en
         = yield main
         = yield footer
           p class="grey-text center"
-            Copyright 2015 by Christine Dodrill
-          p class="center"
-            a href="https://github.com/Xe/xeserv.us" Source code
+            Copyright 2015 from Within
