@@ -5,6 +5,7 @@ import (
 	"net"
 	"strconv"
 	"strings"
+	"time"
 )
 
 // Client is a rcon client for Xonotic.
@@ -25,7 +26,7 @@ func Dial(host, port string) (c *Client) {
 
 // Status returns the server's status or an error describing the failure.
 func (c *Client) Status() (stat *Status, err error) {
-	conn, err := net.Dial("udp", fmt.Sprintf("%s:%s", c.host, c.port))
+	conn, err := net.DialTimeout("udp", fmt.Sprintf("%s:%s", c.host, c.port), (3 * time.Second))
 	if err != nil {
 		return nil, err
 	}
