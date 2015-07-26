@@ -11,6 +11,7 @@ import (
 	"github.com/Xe/xeserv.us/interop/xonotic"
 	"github.com/codegangsta/negroni"
 	"github.com/drone/routes"
+	"github.com/unrolled/render"
 	"github.com/yosssi/ace"
 )
 
@@ -58,6 +59,8 @@ func main() {
 		panic(err)
 	}
 
+	re := render.New()
+
 	mux := routes.New()
 
 	mux.Get("/", func(rw http.ResponseWriter, r *http.Request) {
@@ -87,6 +90,17 @@ func main() {
 		doTemplate("views/minecraft", rw, r, s)
 	})
 
+	mux.Get("/api/minecraft.json", func(rw http.ResponseWriter, r *http.Request) {
+		s, err := fetchAndCache("minecraft", sl, r, func() (interface{}, error) {
+			return minecraft.Query("10.0.0.5", 25575, "swag")
+		})
+		if err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+		}
+
+		re.JSON(rw, http.StatusOK, s)
+	})
+
 	mux.Get("/xonotic", func(rw http.ResponseWriter, r *http.Request) {
 		c := xonotic.Dial("10.0.0.18", "26000")
 
@@ -98,6 +112,19 @@ func main() {
 		}
 
 		doTemplate("views/xonotic", rw, r, stats)
+	})
+
+	mux.Get("/api/xonotic.json", func(rw http.ResponseWriter, r *http.Request) {
+		c := xonotic.Dial("10.0.0.18", "26000")
+
+		stats, err := fetchAndCache("xonotic", sl, r, func() (interface{}, error) {
+			return c.Status()
+		})
+		if err != nil {
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
+		}
+
+		re.JSON(rw, http.StatusOK, stats)
 	})
 
 	mux.Get("/favicon.ico", func(rw http.ResponseWriter, r *http.Request) {
