@@ -9,7 +9,21 @@ html lang=en
     script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"
     script src="/materialize/js/materialize.min.js"
 
+    = javascript
+      $(function() {
+        $(".dropdown-button").dropdown();
+        $(".side-nav").sideNav();
+      });
+
   body
+    ul id="serverdropdown" class="dropdown-content"
+      li
+        a href="/minecraft" Minecraft
+      li
+        a href="/tf2" TF2
+      li
+        a href="/xonotic" Xonotic
+
     nav class="light-blue lighten-1" role="navigation"
       div class="nav-wrapper container"
         a id="logo-container" href="/" class="brand-logo" XeServ
@@ -17,11 +31,9 @@ html lang=en
           li
             a href="/rules" Rules
           li
-            a href="/minecraft" Minecraft
-          li
-            a href="/xonotic" Xonotic
-          li
             a href="/chat" Chat
+          li
+            a class="dropdown-button" href="#!" data-activates="serverdropdown" Servers
 
         ul id="nav-mobile" class="side-nav"
           li
