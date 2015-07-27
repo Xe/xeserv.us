@@ -11,10 +11,10 @@
           img src="/img/servers/tf2.jpg"
 
         div class="card-content white-text"
-          span class="card-title" Status
+          span class="card-title" {{ .Hostname }}
           p Server IP: fluttershy.yochat.biz
           p Game mode: Payload
-          p Tags: {{ . Tags }}
+          p Tags: {{ .Tags }}
 
     div class="col s6 m8"
       div class="card large blue-grey darken-1"
