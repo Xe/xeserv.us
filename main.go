@@ -32,7 +32,7 @@ func fetchAndCache(name string, sl *gurren.StatsLog, r *http.Request, doer func(
 	now := time.Now()
 
 	if c, ok := caches[name]; ok {
-		if now.Before(c.when.Add(time.Second * time.Duration(15))) {
+		if now.Before(c.when.Add(time.Second * time.Duration(120))) {
 			return c.data, nil
 		}
 	}
