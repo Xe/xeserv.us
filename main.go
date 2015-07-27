@@ -78,7 +78,7 @@ func main() {
 
 	mux.Get("/tf2", func(rw http.ResponseWriter, r *http.Request) {
 		s, err := fetchAndCache("tf2", sl, r, func() (interface{}, error) {
-			return tf2.Query("10.0.0.5", "cqcontrol")
+			return tf2.Query("10.0.0.5:27025", "cqcontrol")
 		})
 		if err != nil {
 			handleError(rw, r, err)
