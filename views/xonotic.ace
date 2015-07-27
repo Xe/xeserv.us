@@ -11,7 +11,7 @@
           img src="/img/servers/xonotic.jpg"
 
         div class="card-content white-text"
-          span class="card-title" Status
+          span class="card-title" {{ .Hostname }}
           p Server IP: fluttershy.yochat.biz
           p Game mode: Instagib CTF
           p Mods: Hook, Jetpack, Instagib
