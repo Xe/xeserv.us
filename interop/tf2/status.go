@@ -5,8 +5,7 @@ type Status struct {
 	Online       bool     `json:"online"`
 	Hostname     string   `json:"hostname"`
 	Version      string   `json:"version"`
-	Map          string   `json:"map"`
-	Tags         []string `json:"tags"`
+	Tags         string   `json:"tags"`
 	Players      []Player `json:"players"`
 	HumanPlayers int      `json:"human_players"`
 	Bots         int      `json:"bots"`
@@ -20,8 +19,6 @@ type Player struct {
 	Name      string `json:"name"`
 	UniqueID  string `json:"unique_id"`
 	Connected string `json:"connected"`
-	PingTime  string `json:"ping"`
-	Loss      int    `json:"loss"`
 	State     string `json:"state"`
 	Address   string `json:"addr"`
 	IsBot     bool   `json:"bot"`
