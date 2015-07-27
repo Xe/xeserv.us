@@ -1,21 +1,23 @@
-hostname: Team Fortress 2
-version : 2892667/24 2892667 insecure
-udp/ip  : 10.0.0.6:27015
+hostname: XeServ TF2
+version : 2892667/24 2892667 secure
+udp/ip  : 172.17.3.50:27015  (public ip: 24.6.101.89)
+steamid : [A:1:4100193280:5719] (90096559565569024)
 account : not logged in  (No account specified)
-map     : trade_clocktown_b2a at: -2477 x, 2313 y, -178 z
-edicts  : 918 used of 2048 max
-tags    :
+map     : pl_badwater at: 0 x, 0 y, 0 z
+tags    : alltalk,bots,norespawntime,payload
+players : 1 humans, 1 bots (24 max)
+edicts  : 1040 used of 2048 max
          Spawns Points Kills Deaths Assists
-players : 1 humans, 0 bots (24 max)
 Scout         0      0     0      0       0
-Medic         0      0     0      0       0
 Sniper        0      0     0      0       0
-Heavy         0      0     0      0       0
 Soldier       0      0     0      0       0
-Pyro          0      0     0      0       0
 Demoman       0      0     0      0       0
+Medic         0      0     0      0       0
+Heavy         0      0     0      0       0
+Pyro          0      0     0      0       0
 Spy           0      0     0      0       0
 Engineer      0      0     0      0       0
 
 # userid name                uniqueid            connected ping loss state  adr
-#      2 "Within"            STEAM_ID_LAN        03:35       22    0 active loopback
+#      2 "Within"            [U:1:38610921]      02:06       36    0 active 10.0.0.6:27005
+#      3 "Force of Nature"   BOT                                     active

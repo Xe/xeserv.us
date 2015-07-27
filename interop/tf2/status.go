@@ -3,9 +3,14 @@ package tf2
 // Status is the status of the game server.
 type Status struct {
 	Online       bool     `json:"online"`
+	Hostname     string   `json:"hostname"`
+	Version      string   `json:"version"`
+	Map          string   `json:"map"`
+	Tags         []string `json:"tags"`
 	Players      []Player `json:"players"`
 	HumanPlayers int      `json:"human_players"`
 	Bots         int      `json:"bots"`
+	MaxPlayers   int      `json:"max_players"`
 	MapName      string   `json:"map_name"`
 }
 
@@ -16,6 +21,8 @@ type Player struct {
 	UniqueID  string `json:"unique_id"`
 	Connected string `json:"connected"`
 	PingTime  string `json:"ping"`
-	IPAddress string `json:"addr"`
+	Loss      int    `json:"loss"`
+	State     string `json:"state"`
+	Address   string `json:"addr"`
 	IsBot     bool   `json:"bot"`
 }
