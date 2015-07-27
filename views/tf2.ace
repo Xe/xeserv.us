@@ -1,10 +1,44 @@
 = content title
-  title TF2 - XeServ
+  title Team Fortress 2 - XeServ
 
 = content main
-  h1 class="center orange-text" TF2
+  h1 class="center orange-text" Team Fortress 2
 
-  center
-    img class="center" src="/img/construction.png"
+  .row
+    div class="col s6 m4"
+      div class="card blue-grey darken-1"
+        div class="card-image"
+          img src="/img/servers/tf2.jpg"
 
-  p This server is still under construction. Please check again in a few days!
+        div class="card-content white-text"
+          span class="card-title" Status
+          p Server IP: fluttershy.yochat.biz
+          p Game mode: Payload
+          p Tags: {{ . Tags }}
+
+    div class="col s6 m8"
+      div class="card large blue-grey darken-1"
+        div class="card-image"
+          img src="/img/tf2/maps/{{ .MapName }}.jpg" style="vertical-align: middle"
+
+        div class="card-content white-text"
+          span class="card-title" Online players: {{ .HumanPlayers }} ({{ .Bots }} bots) / {{ .MaxPlayers }}
+          p Current map: {{ .MapName }}
+          {{ if eq .HumanPlayers 0 }}
+            p class="center" Nobody is online. Why not invite a friend?
+          {{ else }}
+            table
+              tr
+                td
+                td ID
+                td Name
+              {{ range .Players }}
+                tr
+                  td
+                    {{ if .IsBot }}
+                      img src="/img/tf2/bot.png"
+                    {{ end }}
+                  td {{ .UserID }}
+                  td {{ .Name }}
+              {{ end }}
+          {{ end }}

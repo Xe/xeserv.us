@@ -8,6 +8,7 @@ import (
 	"github.com/Xe/gurren/middleware/gurren"
 	"github.com/Xe/middleware"
 	"github.com/Xe/xeserv.us/interop/minecraft"
+	"github.com/Xe/xeserv.us/interop/tf2"
 	"github.com/Xe/xeserv.us/interop/xonotic"
 	"github.com/codegangsta/negroni"
 	"github.com/drone/routes"
@@ -71,12 +72,30 @@ func main() {
 		doTemplate("views/rules", rw, r, nil)
 	})
 
-	mux.Get("/tf2", func(rw http.ResponseWriter, r *http.Request) {
-		doTemplate("views/tf2", rw, r, nil)
-	})
-
 	mux.Get("/chat", func(rw http.ResponseWriter, r *http.Request) {
 		doTemplate("views/chat", rw, r, nil)
+	})
+
+	mux.Get("/tf2", func(rw http.ResponseWriter, r *http.Request) {
+		s, err := fetchAndCache("tf2", sl, r, func() (interface{}, error) {
+			return tf2.Query("10.0.0.5", "cqcontrol")
+		})
+		if err != nil {
+			handleError(rw, r, err)
+		}
+
+		doTemplate("views/tf2", rw, r, s)
+	})
+
+	mux.Get("/api/tf2.json", func(rw http.ResponseWriter, r *http.Request) {
+		s, err := fetchAndCache("tf2", sl, r, func() (interface{}, error) {
+			return tf2.Query("10.0.0.5", "cqcontrol")
+		})
+		if err != nil {
+			handleError(rw, r, err)
+		}
+
+		re.JSON(rw, http.StatusOK, s)
 	})
 
 	mux.Get("/minecraft", func(rw http.ResponseWriter, r *http.Request) {
