@@ -86,14 +86,28 @@ func GetStatus(host, password string) (*Status, error) {
 				return nil, err
 			}
 
-			p := Player{
-				UserID:    info[1],
-				Name:      info[2],
-				UniqueID:  info[3],
-				Connected: info[4],
-				State:     info[7],
-				Address:   info[8],
-				IsBot:     info[3] == "BOT",
+			var p Player
+
+			// I'm sorry, really
+
+			if info[3] == "BOT" {
+				p = Player{
+					UserID:   info[1],
+					Name:     info[2],
+					UniqueID: info[3],
+					State:    info[4],
+					IsBot:    true,
+				}
+			} else {
+				p = Player{
+					UserID:    info[1],
+					Name:      info[2],
+					UniqueID:  info[3],
+					Connected: info[4],
+					State:     info[7],
+					Address:   info[8],
+					IsBot:     false,
+				}
 			}
 
 			s.Players = append(s.Players, p)
