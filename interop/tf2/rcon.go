@@ -2,7 +2,6 @@ package tf2
 
 import (
 	"errors"
-	"log"
 	"strconv"
 	"strings"
 
@@ -10,7 +9,7 @@ import (
 	"github.com/james4k/rcon"
 )
 
-func GetStatus(host, password string) (*Status, error) {
+func Query(host, password string) (*Status, error) {
 	rc, err := rcon.Dial(host, password)
 	if err != nil {
 		return nil, err
@@ -39,7 +38,6 @@ func GetStatus(host, password string) (*Status, error) {
 
 	for _, line := range lines {
 		fields := strings.Fields(line)
-		log.Printf("%q", fields)
 
 		if len(fields) == 0 {
 			continue
