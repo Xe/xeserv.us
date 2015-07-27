@@ -89,10 +89,10 @@ func main() {
 
 	mux.Get("/api/tf2.json", func(rw http.ResponseWriter, r *http.Request) {
 		s, err := fetchAndCache("tf2", sl, r, func() (interface{}, error) {
-			return tf2.Query("10.0.0.5", "cqcontrol")
+			return tf2.Query("10.0.0.5:27025", "cqcontrol")
 		})
 		if err != nil {
-			handleError(rw, r, err)
+			http.Error(rw, err.Error(), http.StatusInternalServerError)
 		}
 
 		re.JSON(rw, http.StatusOK, s)
