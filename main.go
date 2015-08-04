@@ -121,7 +121,7 @@ func main() {
 	})
 
 	mux.Get("/xonotic", func(rw http.ResponseWriter, r *http.Request) {
-		c := xonotic.Dial("172.17.0.85", "26000")
+		c := xonotic.Dial("172.17.0.114", "26000")
 
 		stats, err := fetchAndCache("xonotic", sl, r, func() (interface{}, error) {
 			return c.Status()
@@ -134,7 +134,7 @@ func main() {
 	})
 
 	mux.Get("/api/xonotic.json", func(rw http.ResponseWriter, r *http.Request) {
-		c := xonotic.Dial("172.17.0.85", "26000")
+		c := xonotic.Dial("172.17.0.114", "26000")
 
 		stats, err := fetchAndCache("xonotic", sl, r, func() (interface{}, error) {
 			return c.Status()
